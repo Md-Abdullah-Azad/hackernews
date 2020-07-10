@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th scope="col" style="width: 10%;">Comments</th>
+      <th scope="col" style="width: 10%;">Vote Count</th>
+      <th scope="col" style="width: 10%;">UpVote</th>
+      <th scope="col" style="width: 60%;">News Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of feed.hits; let i = index;">
+      <td data-label="comments" style="width: 10%;"> {{ item.num_comments }} </td>
+      <td data-label="vote count" style="width: 10%;">{{ item.points }} </td>
+      <td data-label="upvote" style="width: 10%;">
+        <span (click)="item.points = item.points+1">
+          <i class="fas fa-sort-up"></i>
+        </span>
+      </td>
+      <td data-label="title" style="width: 60%;"> 
+        {{ item.title }} 
+        <span class="author">{{ item.points }} points by {{ item.author }} </span>
+        <span class="hide" (click)="hide( item.objectID )"> [ hide ] </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
