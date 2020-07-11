@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StoryFeedItemComponent } from './story-feed-item.component';
+import { HackernewsApiService } from 'src/app/services/hackernews-api.service';
 
 describe('StoryFeedItemComponent', () => {
   let component: StoryFeedItemComponent;
@@ -8,7 +9,8 @@ describe('StoryFeedItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StoryFeedItemComponent ]
+      declarations: [ StoryFeedItemComponent ],
+      providers: [HackernewsApiService]
     })
     .compileComponents();
   }));
@@ -19,7 +21,4 @@ describe('StoryFeedItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

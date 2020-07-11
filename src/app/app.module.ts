@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
@@ -19,8 +19,9 @@ import { HackernewsApiService } from './services/hackernews-api.service';
     StoryFeedComponent,
     StoryFeedItemComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, HttpModule],
+  imports: [BrowserModule, AppRoutingModule, HttpModule],
   providers: [HackernewsApiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }
