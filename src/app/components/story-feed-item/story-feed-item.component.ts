@@ -18,8 +18,8 @@ export class StoryFeedItemComponent implements OnInit, OnChanges {
     this.feed = this._api.getLocalStorage();
   }
 
-  hide(objectID){
-    this.feed.hits = this.feed.hits.filter((i)=> { 
+  hide(objectID) {
+    this.feed.hits = this.feed.hits.filter((i) => {
       return i.objectID != objectID;
     })
   }
