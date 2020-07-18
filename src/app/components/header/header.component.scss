@@ -1,6 +1,7 @@
 $persian-red: rgb(200, 50, 50);
 $red-blend: rgb(213, 50, 52);
 $vivid-red: rgb(226, 50, 55);
+$reddish-orange: #ff7600;
 
 :host {
   display: flex;
@@ -8,7 +9,7 @@ $vivid-red: rgb(226, 50, 55);
   justify-content: center;
   height: 60px;
   width: 100%;
-  background: $persian-red;
+  background: $reddish-orange;
   color: white;
   position: sticky;
   top: 0;

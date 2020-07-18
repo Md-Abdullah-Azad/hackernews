@@ -1,26 +1,41 @@
-<table>
-  <thead>
-    <tr>
-      <th scope="col" style="width: 10%;">Comments</th>
-      <th scope="col" style="width: 10%;">Vote Count</th>
-      <th scope="col" style="width: 10%;">UpVote</th>
-      <th scope="col" style="width: 60%;">News Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of feed.hits; let i = index;">
-      <td data-label="comments" style="width: 10%;"> {{ item.num_comments }} </td>
-      <td data-label="vote count" style="width: 10%;">{{ item.points }} </td>
-      <td data-label="upvote" style="width: 10%;">
-        <span (click)="item.points = item.points+1">
-          <i class="fas fa-sort-up"></i>
-        </span>
-      </td>
-      <td data-label="title" style="width: 60%;"> 
-        {{ item.title }} 
-        <span class="author">{{ item.points }} points by {{ item.author }} </span>
-        <span class="hide" (click)="hide( item.objectID )"> [ hide ] </span>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="wrapper">
+  <div class="Rtable Rtable--5cols Rtable--collapse">
+    <div class="Rtable-row Rtable-row--head">
+      <div class="Rtable-cell date-cell column-heading">Comments</div>
+      <div class="Rtable-cell topic-cell column-heading">Vote Count</div>
+      <div class="Rtable-cell access-link-cell column-heading">UpVote</div>
+      <div class="Rtable-cell pdf-cell column-heading">News Details</div>
+    </div>
+
+    <div class="Rtable-row" *ngFor="let item of feed.hits; let i = index;" [ngClass]=" rowEvenOdd(i)  ? 'even-row' : 'odd-row' ">
+      <div class="Rtable-cell date-cell" >
+        <!-- <div class="Rtable-cell--heading">Comments</div> -->
+        <div class="Rtable-cell--content date-content"> {{ item.num_comments }} </div>
+      </div>
+      <div class="Rtable-cell topic-cell">
+        <!-- <div class="Rtable-cell--heading">Vote Count</div> -->
+        <div class="Rtable-cell--content title-content"> {{ item.points }} </div>
+      </div>
+      <div class="Rtable-cell access-link-cell">
+        <!-- <div class="Rtable-cell--heading">UpVote</div> -->
+        <div class="Rtable-cell--content access-link-content">
+          <span (click)="item.points = item.points+1">
+            <i class="fas fa-sort-up"></i>
+          </span>
+        </div>
+      </div>
+      <div class="Rtable-cell Rtable-cell--foot pdf-cell">
+        <!-- <div class="Rtable-cell--heading">News Details</div> -->
+        <div class="Rtable-cell--content pdf-content">
+          {{ item.title }}
+          <span class="points">({{ getDomainName(item.url) }}) points by </span>
+          <span class="author">{{ item.author }} </span>
+          <!-- <span class="author">{{ getTime(item.created_at) }} </span> -->
+          <span class="hide" (click)="hide( item.objectID )"> [ hide ] </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

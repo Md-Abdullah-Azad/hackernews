@@ -4,6 +4,7 @@ import { StoryFeedComponent } from './components/story-feed/story-feed.component
 
 const routes: Routes = [
   { path: 'topstories', data: { feed: 'topstories' }, component: StoryFeedComponent },
+  // { path: 'topstories', data: { feed: 'topstories' }, component: TestComponent },
   { path: '', redirectTo: 'topstories', pathMatch: 'full' },
 ];
 

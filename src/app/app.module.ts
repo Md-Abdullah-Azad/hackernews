@@ -17,7 +17,7 @@ import { HackernewsApiService } from './services/hackernews-api.service';
     HeaderComponent,
     FooterComponent,
     StoryFeedComponent,
-    StoryFeedItemComponent
+    StoryFeedItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpModule],
   providers: [HackernewsApiService],

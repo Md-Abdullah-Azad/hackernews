@@ -1,17 +1,16 @@
-<div id="navigator" *ngIf="pagination">
-  <span (click)="prevPage()">
-    <i class="fas fa-arrow-left"></i>
-  </span>
-  &#8239;&#8239;
-  <span>{{page}}</span>
-  <span>/</span>
-  <span>{{totalPages}}</span>
-  &#8239;&#8239;
-  <span (click)="nextPage()">
-    <i class="fas fa-arrow-right"></i>
-  </span>
-</div>
 <div id="spinner-hn" *ngIf="grabbingFeed"></div>
-<app-story-feed-item [feed]="feed" *ngIf="!grabbingFeed"></app-story-feed-item>
-
-
+<div *ngIf="!grabbingFeed">
+  <app-story-feed-item [feed]="feed"></app-story-feed-item>
+  <div id="navigator" *ngIf="pagination">
+    <div id="navigator-pane">
+      <span (click)="prevPage()">
+        Previous
+      </span>
+      <span> | </span>
+      <span (click)="nextPage()">
+        Next
+      </span>
+    </div>
+  </div>
+</div>
+<div id="chart"></div>

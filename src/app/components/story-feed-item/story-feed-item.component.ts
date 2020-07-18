@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { HackernewsApiService } from 'src/app/services/hackernews-api.service';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 @Component({
   selector: 'app-story-feed-item',
   templateUrl: './story-feed-item.component.html',
@@ -7,11 +9,12 @@ import { HackernewsApiService } from 'src/app/services/hackernews-api.service';
 })
 export class StoryFeedItemComponent implements OnInit, OnChanges {
   @Input() feed: any;
-
-  constructor(private _api: HackernewsApiService,) {}
+  constructor(private _api: HackernewsApiService,) { }
 
   ngOnInit() {
     this.feed = this._api.getLocalStorage();
+    TimeAgo.addLocale(en)
+    const timeAgo = new TimeAgo('en-US')
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -22,5 +25,18 @@ export class StoryFeedItemComponent implements OnInit, OnChanges {
     this.feed.hits = this.feed.hits.filter((i) => {
       return i.objectID != objectID;
     })
+  }
+
+  public getTime(date) {
+    return  new TimeAgo('en-US').format(date - 60 * 1000)
+  }
+  public rowEvenOdd(index) {
+    return (index % 2 == 0)
+  }
+  public getDomainName(url) {
+    if (url) {
+      var arr = url.split("/");
+      return arr[2];
+    }
   }
 }

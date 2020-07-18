@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HackernewsApiService } from '../../services/hackernews-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
+import * as c3 from 'c3';
 
 @Component({
   selector: 'app-story-feed',
@@ -16,6 +17,8 @@ export class StoryFeedComponent implements OnInit {
   public feedType: string;
   public feed: Array<string>;
   public totalPages: number;
+  objectIDCollection: any;
+  pointsCollection: any;
   constructor(
     private cdRef: ChangeDetectorRef,
     private _api: HackernewsApiService,
@@ -42,11 +45,37 @@ export class StoryFeedComponent implements OnInit {
           this.totalPages = data.nbPages;
           this.pagination = true;
           this.grabbingFeed = false;
+          this.objectIDCollection = data.hits.map(({ objectID }) => objectID);
+          this.pointsCollection = data.hits.map(({ points }) => points);
+          this.generateChart();
           this.cdRef.detectChanges();
         },
         error => console.log(error)
       );
   }
+
+  generateChart() {
+    let chart = c3.generate({
+    bindto: '#chart',
+        data: {
+            x: 'ID',
+            columns: [
+              ['ID', ...this.objectIDCollection],
+              ['Votes', ...this.pointsCollection]
+            ]
+        },
+        axis: {
+          x: {
+              type: 'category',
+              tick: {
+                  rotate: 90,
+                  multiline: false
+              },
+              height: 150
+          }
+      }
+    });
+}
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
